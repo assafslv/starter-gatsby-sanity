@@ -34,7 +34,11 @@ If you need a hand, make sure to check the [Stackbit support page](https://stack
 
 1. Stackbit will deploy the [Sanity Studio](https://www.sanity.io/studio) and [Stanity GraphQL API](https://www.sanity.io/docs/graphql) for you.
 
-1. When finished, clone the generated repository.
+1. Once finished, you will be redirected to Stackbit Studio where you will be
+   able to edit the content using the free on-page editing experience, and
+   publish new versions of your site
+
+1. To develop your site locally, clone the generated repository.
 
 1. Install npm dependencies:
 
@@ -44,6 +48,7 @@ If you need a hand, make sure to check the [Stackbit support page](https://stack
 
         npm install -g @sanity/cli
         cd studio
+        sanity login
         sanity install
         sanity start
 
@@ -57,48 +62,86 @@ If you need a hand, make sure to check the [Stackbit support page](https://stack
 
         npm run develop
 
-1. Open [http://localhost:8000/](http://localhost:8000/) in the browser
-
-1. 🎉
+1. Open [http://localhost:8000/](http://localhost:8000/) in the browser.
+   You can now edit the site contents in the local Sanity Studio, and the
+   browser will live-update your changes. 🎉
 
 
 ## Contributing
 
 To contribute to this theme please follow the following steps:
 
-1. Create an empty Sanity project
-
 1. Clone this repository locally
 
-1. Run npm install
+1. Install Sanity CLI
+
+        npm install -g @sanity/cli
+
+1. Login into Sanity
+
+        sanity login
+
+1. Install dependencies
 
         npm install
+        
+1. Create an empty Sanity project, and a "production" dataset (this just creates
+   a project)
 
-1. Create Sanity read-write Sanity token and assign it to `SANITY_TOKEN` environment variable
+        node sanity-export/create-project.js
+        
+        > creating a project...
+        > created a project, projectId: dgaiu42f
+        > creating a dataset...
+        > created a dataset
 
-1. Assign Sanity project ID and dataset to `SANITY_PROJECT_ID` and `SANITY_DATASET` environment variables respectively
+1. Copy paste the projectId from previous step and import the content to the project
 
-1. Import the initial theme contents by running
+        node sanity-export/import.js <project_id>
 
-        node sanity-export/import.js
-
-1. Replace the `SANITY_PROJECT_ID` in [studio/sanity.json](studio/sanity.json) with your Sanity project id
-
+1. Replace the `SANITY_PROJECT_ID` in [studio/sanity.json](studio/sanity.json)
+   with your Sanity project id
+   
 1. Install and start local Sanity Studio
 
-1. Run gatsby locally
+        cd studio
+        sanity install
+
+1. Deploy Sanity GraphQL API (from within studio folder)
+
+        sanity graphql deploy --playground
+
+1. Start Sanity Studio (from within studio folder)
+
+        sanity start
+
+   Sanity studio is now available at http://localhost:3333
+   
+1. Define following environment variables to allow Gatsby to fetch the content
+   from Sanity when developing or building the site. You will need to create a
+   "read-write" token in your Sanity project settings page 
+   (https://manage.sanity.io/projects/__PROJECT_ID__/settings/api)
+
+       export SANITY_PROJECT_ID=<project_id>
+       export SANITY_DATASET=production
+       export SANITY_TOKEN=<read_write_token>
+
+1. Run gatsby development server locally (from project root folder) 
 
         npm run develop
+        
+    Navigate to [http://localhost:8000](http://localhost:8000) to see the website.
+    You can now edit the site contents in the local Sanity Studio, and the
+    browser will live-update your changes.
 
-1. When you have finished updating the code and contents in Sanity Studio, import the contents back to sanity-export/export.js by running
+1. Once you finish updating the code and contents, export the contents
+   back to sanity-export/export.json by running
 
-        node sanity-export/export.js
+        node sanity-export/export.js <project_id>
 
 1. Set back the `"projectId": "SANITY_PROJECT_ID"` in [studio/sanity.json](studio/sanity.json)
-     
-1. Submit a pull-request
 
-1. 🎉
+1. Commit, push and submit a pull-request 🎉
 
 
 ## Colophon

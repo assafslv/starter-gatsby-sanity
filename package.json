@@ -34,6 +34,7 @@
     "@sanity/core": "^2.3.3",
     "@sanity/export": "^2.2.6",
     "@sanity/import": "^2.2.6",
+    "configstore": "^5.0.1",
     "eslint": "^7.20.0",
     "eslint-plugin-react": "^7.22.0",
     "prettier": "^2.2.1"
