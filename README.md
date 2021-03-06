@@ -2,7 +2,7 @@
 
 This is a Starter [Gatsby](https://gatsbyjs.com) theme powered by [Sanity](https://www.sanity.io).
 
-Click the button below to use this theme to create a new site using the Stackbit:
+Click the button below to create a new site from this theme using Stackbit:
 
 [![Create with Stackbit](https://assets.stackbit.com/badge/create-with-stackbit.svg)](https://app.stackbit.com/create?theme=https://github.com/stackbit-themes/starter-gatsby-sanity&utm_source=theme-readme&utm_medium=referral&utm_campaign=stackbit_themes)
 
